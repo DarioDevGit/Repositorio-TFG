@@ -1,0 +1,167 @@
+<!DOCTYPE>
+<html>
+
+<head>
+<title>Pipo Movie</title>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="./imagenes/banner2.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<style>
+    body{
+        background-color: #99ccff;
+    }
+    .container{
+        width: 100%;
+        float: left;
+    }
+    .logo{
+        width: 100%;
+        float: left;
+    }
+    .cabezera{
+        float: left;
+        width: 100%;
+    }
+    ul.cabezeras {
+		list-style-type: none;
+		margin-left:5%;
+		padding: 0;
+		overflow: hidden;
+		background-color:#ff751a;
+		width:90%;
+	}
+    li.cabezeras {
+		float: left;
+	}
+	li.cabezeras a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+	li.cabezeras a:hover {
+		background-color:#ffc266;
+	}
+    .busqueda{
+        float: left;
+        width: 15%;
+        height: 100%;
+        margin-left: 5%;
+    }
+    ol.busquedas {
+        margin-top: 0%;
+		padding: 2%;
+		overflow: hidden;
+		background-color:#ff751a;
+		width:100%;
+	}
+	li.busquedas a {
+		display: block;
+		color: white;
+		padding: 4% 4%;
+	}
+	li.busquedas a:hover {
+		background-color:#ffc266;
+	}
+	
+	.formulario{
+		width: 55%;
+		background-color: #ff751a;
+		padding: 1%;
+		font-weight: bold;
+		border-radius: 5%;
+	}
+
+	.campos{
+		font-weight: bold;
+		padding-bottom: 1%;
+	}
+    
+</style>
+
+<!-- <script src='https://www.google.com/recaptcha/api.js?hl=es'></script> -->
+
+<script>
+
+function comprueba(event){
+	
+	var patronEmail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	var patronClave=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/;
+
+	var error=document.getElementById("error");
+
+	var email=document.getElementById("email").value;
+	var clave=document.getElementById("clave").value;
+
+	if(!patronEmail.test(email)){
+		error.innerHTML="¡¡¡Error en el email!!!";
+		return false;
+	}else if(!patronClave.test(clave)){
+		error.innerHTML="¡¡¡La contraseña tiene que contener minuscula, mayuscula, digito, caracter especial y al menos una longitud de 6 caracteres!!!";
+		return false;
+	}else{
+		return true;
+	}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+      <!-- BOTÓN DE DESPLEGAR MENU RESPONSIVE -->	  
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid" style="background-color:#ff751a;">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <div class="logo">
+		<a href="./index.php"><img src="./imagenes/banner2.png" style="width:300px;height:150px; float:left;"></a>
+	  </div>
+    </div>
+<br><br><br><br><br><br><br><br>
+<div class="collapse navbar-collapse" id="myNavbar" style="background-color:#99ff99;">
+      <ul class="nav navbar-nav navbar-left">
+		<li style="margin-top:5.5%;"><input type="text" placeholder="Buscar..." id="busqueda"></li>
+		<li><button style="margin-top:22%;">Buscar</button></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="./registrarUsuario.html"><span class="glyphicon glyphicon-user"></span>Registrar</a></li>
+        <li><a href="./login.html"><span class="glyphicon glyphicon-log-in"></span>Acceder</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<center>
+<div class="formulario">
+	<form method="POST" action="compruebaUsuario.php" onsubmit="return comprueba()">
+
+		<h3 style="color:#99ff99;"><u>Login:</u></h3>
+		<br>
+		<table>
+		<tr><td class="campos" style="color:#99ff99;">Email: </td></tr><tr><td class="campos"><input type="email" name="email" id="email"></td></tr>
+		<tr><td class="campos" style="color:#99ff99;">Contraseña: </td></tr><tr><td class="campos"><input type="password" name="clave" id="clave"></td></tr>
+		<tr><td colspan="2"><div class="g-recaptcha" data-sitekey="6LfjeKQUAAAAAGCDCeKO5CfYZY0UKkCAzWcLKxLj" required></div></td><td></td></tr>
+		</table>
+		<h3 id="error" value=""></h3>
+		<br>
+		<input type="submit" value="Acceder" id="aceptar">
+	</form>
+</div>
+</center>
+
+</body>
+
+</html>
